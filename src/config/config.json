@@ -1,0 +1,10 @@
+{
+    "weatherApi": {
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "apiKey": "b1a9277de080247493a87ddf35d8d605"
+    },
+    "countriesApi": {
+        "url": "https://restcountries.com/v3.1/name/",
+        "apiKey": ""
+    }
+}

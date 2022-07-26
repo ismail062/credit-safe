@@ -1,13 +1,13 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-const { City } = require('../../api/')
+const { City } = require("../../api/");
 
+router.get("/city/:countryName", City.getCities);
 
-router.get('/cities',  City.getCities)
+router.post("/city", City.addCity);
 
-router.post(
-  '/cities',
-  City.addCity,
-)
+router.put("/cities/:id", City.updateCity);
 
-module.exports = router
+router.delete("/cities/:id", City.deleteCity);
+
+module.exports = router;
