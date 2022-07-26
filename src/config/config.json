@@ -5,6 +5,7 @@
     },
     "countriesApi": {
         "url": "https://restcountries.com/v3.1/name/",
+        "capitalUrl": "https://restcountries.com/v3.1/capital/",
         "apiKey": ""
     }
 }

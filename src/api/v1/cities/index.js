@@ -1,8 +1,8 @@
 // CRUD operations
-const { getCityData, getCityWeather} = require("./helper.js");
+const { getDataByCapital, getCityWeather} = require("./helper.js");
 module.exports = {
   getCities: async (req, res, next) => {
-    const cityData = await getCityData(req.params.countryName);
+    const cityData = await getDataByCapital(req.params.countryName);
     const weather = await getCityWeather(lat=cityData.lat, lon=cityData.lng);
     res.status(200).send({ status: "success ", city: cityData, weather: weather });
   },
