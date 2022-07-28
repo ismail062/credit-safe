@@ -1,9 +1,12 @@
 const { request } = require("../../../services/axios");
 const { getWeather } = require("../../../services/openWeather");
-
 const { countriesApi } = require("../../../config/config.json");
-const e = require("express");
+const { cities } = require("../../../data/models");
 
+const getCity = async (cityName) => {
+  const city = await cities.findOne({ where: { name: cityName } });
+  return city;
+};
 const getDataByCapital = async (cityName) => {
   const options = {
     url: `${countriesApi.capitalUrl}/${cityName}`,
@@ -21,7 +24,6 @@ const getDataByCapital = async (cityName) => {
       throw error;
     });
 };
-
 const getCountryData = async (countryName) => {
   const options = {
     url: `${countriesApi.url}/${countryName}`,
@@ -45,8 +47,60 @@ const getCityWeather = async (lat, lon) => {
   return weather;
 };
 
+const addCityToDB = async (data) => {
+  const {
+    name,
+    country,
+    state,
+    tourist_rating,
+    established_date,
+    estimated_population,
+  } = data;
+
+  if (!name || !country) throw new Error("Invalid parameters");
+
+  const { id } = await cities.create({
+    name: name,
+    country: country,
+    state: state,
+    touristRating: parseFloat(tourist_rating),
+    establishedDate: new Date(established_date),
+    estimatedPopulation: estimated_population,
+  });
+  return id;
+};
+
+const updateCity = async (id, data) => {
+  const { tourist_rating, established_date, estimated_population } = data;
+
+  const city = await cities.findOne({ where: { id: id } });
+
+  if (!city) return null;
+
+  await city.update({
+    touristRating: parseFloat(tourist_rating),
+    establishedDate: new Date(established_date),
+    estimatedPopulation: estimated_population? estimated_population: city.estimatedPopulation,
+  })
+  return id;
+};
+
+const deleteCity = async (id) => {
+
+  const city = await cities.findOne({ where: { id: id } });
+
+  if (!city) return null;
+
+  await city.destroy();
+  return id;
+};
+
 module.exports = {
+  getCity,
   getDataByCapital,
   getCountryData,
   getCityWeather,
+  addCityToDB,
+  updateCity,
+  deleteCity
 };

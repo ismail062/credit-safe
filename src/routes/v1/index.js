@@ -2,12 +2,12 @@ const router = require("express").Router();
 
 const { City } = require("../../api/");
 
-router.get("/city/:countryName", City.getCities);
+router.get("/city/:cityName", City.getCity);
 
 router.post("/city", City.addCity);
 
-router.put("/cities/:id", City.updateCity);
+router.put("/cities/:cityId", City.updateCity);
 
-router.delete("/cities/:id", City.deleteCity);
+router.delete("/cities/:cityId", City.deleteCity);
 
 module.exports = router;

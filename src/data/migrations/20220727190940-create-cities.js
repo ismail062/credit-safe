@@ -11,6 +11,7 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
         field: "name",
       },
       state: {
@@ -19,10 +20,11 @@ module.exports = {
       },
       country: {
         type: Sequelize.STRING,
+        allowNull: false,
         field: "country",
       },
       touristRating: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL(10,1),
         field: "tourist_rating",
       },
       establishedDate: {
@@ -36,12 +38,12 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        field: "created_at",
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        field: "updated_at",
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     });
   },
