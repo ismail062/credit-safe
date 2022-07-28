@@ -21,7 +21,7 @@ module.exports = {
       (lat = countryData.lat),
       (lon = countryData.lng)
     );
-    res.status(200).send({ status: "success ", city: city, weather: weather });
+    res.status(200).send({ status: "success ", city: city, countryData: countryData, weather: weather });
   },
   addCity: async (req, res, next) => {
     const city = await addCityToDB(req.body);

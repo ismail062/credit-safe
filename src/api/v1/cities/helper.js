@@ -17,7 +17,23 @@ const getDataByCapital = async (cityName) => {
       const lat = data[0].latlng[0];
       const lng = data[0].latlng[1];
       const capital = data[0].capital[0];
-      return { lat: lat, lng: lng, capital: capital };
+      const country = data[0].name.common;
+      const digit2Code = data[0].cca2;
+      const digit3Code = data[0].cca3;
+      const currencyCode = Object.keys(data[0].currencies)[0];
+      const currencyName = data[0].currencies[currencyCode].name;
+      const currencySymbol = data[0].currencies[currencyCode].symbol;
+      return {
+        lat,
+        lng,
+        capital,
+        country,
+        digit2Code,
+        digit3Code,
+        currencyCode,
+        currencyName,
+        currencySymbol
+      };
     })
     .catch((error) => {
       console.log(error);
@@ -80,13 +96,14 @@ const updateCity = async (id, data) => {
   await city.update({
     touristRating: parseFloat(tourist_rating),
     establishedDate: new Date(established_date),
-    estimatedPopulation: estimated_population? estimated_population: city.estimatedPopulation,
-  })
+    estimatedPopulation: estimated_population
+      ? estimated_population
+      : city.estimatedPopulation,
+  });
   return id;
 };
 
 const deleteCity = async (id) => {
-
   const city = await cities.findOne({ where: { id: id } });
 
   if (!city) return null;
@@ -102,5 +119,5 @@ module.exports = {
   getCityWeather,
   addCityToDB,
   updateCity,
-  deleteCity
+  deleteCity,
 };
