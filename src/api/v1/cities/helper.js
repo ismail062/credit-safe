@@ -112,6 +112,10 @@ const deleteCity = async (id) => {
   return id;
 };
 
+const getCities = async () => {
+  return await await cities.findAll();
+}
+
 module.exports = {
   getCity,
   getDataByCapital,
@@ -120,4 +124,5 @@ module.exports = {
   addCityToDB,
   updateCity,
   deleteCity,
+  getCities
 };

@@ -6,6 +6,7 @@ const {
   addCityToDB,
   updateCity,
   deleteCity,
+  getCities,
 } = require("./helper.js");
 module.exports = {
   getCity: async (req, res, next) => {
@@ -50,4 +51,8 @@ module.exports = {
       res.status(204).send({ message: "City deleted successfully ", cityId });
     }
   },
+  getAllCities: async (req, res, next) => {
+    const cities = await getCities()
+    res.status(200).send(cities);
+  }
 };
