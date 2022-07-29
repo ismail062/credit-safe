@@ -14,7 +14,7 @@ module.exports = {
     if (!cityName) throw new Error(`Invalid city name`);
     const city = await getCity(cityName);
     if(!city) { 
-      res.status(404).send({ message: 'City not found' });
+      res.status(404).send({ message: 'City not found', found: false });
       return;
     }
     const countryData = await getDataByCapital(city.name);
