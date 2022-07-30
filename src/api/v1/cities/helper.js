@@ -23,10 +23,12 @@ const getDataByCapital = async (cityName) => {
       const currencyCode = Object.keys(data[0].currencies)[0];
       const currencyName = data[0].currencies[currencyCode].name;
       const currencySymbol = data[0].currencies[currencyCode].symbol;
+      const population = data[0].population
       return {
         lat,
         lng,
         capital,
+        population,
         country,
         digit2Code,
         digit3Code,
@@ -68,9 +70,9 @@ const addCityToDB = async (data) => {
     name,
     country,
     state,
-    tourist_rating,
-    established_date,
-    estimated_population,
+    touristRating,
+    establishedDate,
+    estimatedPopulation,
   } = data;
 
   if (!name || !country) throw new Error("Invalid parameters");
@@ -79,9 +81,9 @@ const addCityToDB = async (data) => {
     name: name,
     country: country,
     state: state,
-    touristRating: parseFloat(tourist_rating),
-    establishedDate: new Date(established_date),
-    estimatedPopulation: estimated_population,
+    touristRating: parseFloat(touristRating),
+    establishedDate: new Date(establishedDate),
+    estimatedPopulation: estimatedPopulation,
   });
   return id;
 };
