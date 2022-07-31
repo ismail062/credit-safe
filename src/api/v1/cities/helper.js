@@ -89,17 +89,17 @@ const addCityToDB = async (data) => {
 };
 
 const updateCity = async (id, data) => {
-  const { tourist_rating, established_date, estimated_population } = data;
+  const { touristRating, establishedDate, estimatedPopulation } = data;
 
   const city = await cities.findOne({ where: { id: id } });
 
   if (!city) return null;
 
   await city.update({
-    touristRating: parseFloat(tourist_rating),
-    establishedDate: new Date(established_date),
-    estimatedPopulation: estimated_population
-      ? estimated_population
+    touristRating: parseFloat(touristRating),
+    establishedDate: new Date(establishedDate),
+    estimatedPopulation: estimatedPopulation
+      ? estimatedPopulation
       : city.estimatedPopulation,
   });
   return id;
