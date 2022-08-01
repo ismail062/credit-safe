@@ -13,3 +13,16 @@ Following setup is required to run the API locally.
 
 ### routes
 you can see the swagger api documentation at `http://localhost:5000/api-docs`
+
+## Key points
+1. API developed in `ExpressJs`, a nodejs framework for backend development
+2. `mysql` database is use to store data
+3. `Sequelize ORM` is used to create the database schema. we can easily change the database provider if requires
+4. `express-jsdoc-swagger` package is used to create the  api `swagger documentation`
+5. code structure to create different versions of the api
+
+#### Could be implemented to enhance api
+1. security / authentication / authorization is missing at the moment. e.g. firebase authentication or oAuth can be used.
+2. input validation is not implemented. Joi validation can be used to validate request parameters. 
+3. Test are not written. different js libraries can be used such as TestCafe, ChaiJs and mochajs library
+
