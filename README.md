@@ -11,7 +11,7 @@ Following setup is required to run the API locally.
 4. `npm run start` to start the server locally. Its uses nodemon as development server to watch the changes in the the code
 
 
-### routes
+## Swagger Documentation
 you can see the swagger api documentation at `http://localhost:5000/api-docs`
 
 ## Key points
